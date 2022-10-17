@@ -4,8 +4,9 @@ on:
    push:
      branches:
        - 'testing'
-  - uses: alexrogalskiy/github-action-git-operation@master
-  with:
-  mode: 'merge-fast-forward'
-  sourceBranch: 'feature'
-  targetBranch: 'master'
+  steps:
+   - uses: alexrogalskiy/github-action-git-operation@master
+      with:
+      mode: 'merge-fast-forward'
+      sourceBranch: 'feature'
+      targetBranch: 'master'
