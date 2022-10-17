@@ -1,12 +1,12 @@
 name: Git merge operation
 
 on:
-  push:
-    branches:
-      - 'testing'
+   push:
+     branches:
+       - 'testing'
   
-  - uses: alexrogalskiy/github-action-git-operation@master
-    with:
-    mode: 'merge-fast-forward'
-    sourceBranch: 'feature'
-    targetBranch: 'master'
+- uses: alexrogalskiy/github-action-git-operation@master
+  with:
+  mode: 'merge-fast-forward'
+  sourceBranch: 'feature'
+  targetBranch: 'master'
