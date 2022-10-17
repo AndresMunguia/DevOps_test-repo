@@ -4,6 +4,7 @@ on:
    push:
      branches:
        - 'testing'
+       
   steps:
    - uses: alexrogalskiy/github-action-git-operation@master
       with:
