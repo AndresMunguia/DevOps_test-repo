@@ -1,0 +1,10 @@
+- name: Git merge operation
+
+on:
+  push:
+  
+  uses: alexrogalskiy/github-action-git-operation@master
+  with:
+    mode: 'merge-fast-forward'
+    sourceBranch: 'testing'
+    targetBranch: 'main'
