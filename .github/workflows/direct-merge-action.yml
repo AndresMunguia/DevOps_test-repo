@@ -13,7 +13,7 @@ jobs:
 
     steps:
         - uses: tukasz/direct-merge-action@master
-          with:
+        - with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           source-branch: testing
           target-branch: main
