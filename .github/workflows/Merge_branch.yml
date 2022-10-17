@@ -17,7 +17,7 @@ jobs:
       - name: Git merge operation
         uses: alexrogalskiy/github-action-git-operation@master
         with:
-          mode: 'merge-fast-forward'
+          mode: merge-fast-forward
           sourceBranch: 'testing'
           targetBranch: 'main'
         env:
