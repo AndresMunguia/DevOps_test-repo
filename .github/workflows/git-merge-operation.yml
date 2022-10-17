@@ -2,6 +2,8 @@ name: Git merge operation
 
 on:
   push:
+    branches:
+      - 'testing'
   
   - uses: alexrogalskiy/github-action-git-operation@master
     with:
