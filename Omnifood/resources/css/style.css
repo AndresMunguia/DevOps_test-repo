@@ -1,0 +1,672 @@
+/* --------------------------*/
+/* ----- BASIC SETUP ----- */
+/* --------------------------*/
+
+* { /* El código que contenga esta clase aplica para todos los elementos */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    background-color: white; /* color de fondo */
+    color: #555; /* color del font */
+    font-family: 'Lato', 'Arial', sans-serif; /*si no carga font Lato, el siguiente por default es Arial o sans-serif*/
+    font-weight: 300; /*el ancho por default del font es 300*/
+    font-size: 20px; /*el tamaño por default es de 20px TAMBIÉN ES EL TAMAÑO ESTANDAR PARA LAS PÁGINAS*/
+    text-rendering: optimizeLegibility; /*es para que se con buena calidad en todo momento (?)*/
+    overflow-x: hidden;
+}
+
+/* esto es para limpiar los float y no se encimen una sección con otra */
+.clearfix {zoom: 1;}
+.clearfix::after {
+    content: '.';
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+/* --------------------------*/
+/* ----- REUSABLE ----- */
+/* --------------------------*/
+
+.row {
+    max-width: 1140px;
+    /*margin: 0 auto 0 auto; para centrar un contenedor dentro de otro contenedor se dejan el margen derecho e izquierdo en "auto"*/
+    margin: 0 auto;
+    /*el valor "0" es asignado al top y bottom del contenerdor*/
+    /*el valor "auto" es asignado al left y right del contenerdor*/
+    /* border: 1px solid black; */
+}
+
+section {
+    padding: 80px 0;
+    /* border: solid gray; */
+}
+
+.box {
+    padding: 1%;
+    /* border: 1px solid gray; */
+}
+
+/* --------------------------*/
+/* ----- HEADER ----- */
+/* --------------------------*/
+
+header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.700), rgba(0, 0, 0, 0.700)), url(img/hero.jpg);
+    background-size: cover; /*es para que la imagen se vea completa en la página, sin el zoom*/
+    background-position: center;
+    height: 100vh; /*es para que el header abarque toda la página a lo alto*/
+    background-attachment: fixed; /* para que la imagen de fondo no se mueva mientras hacemos scroll en la página */
+}
+
+.hero-text-box {
+    position: absolute; /* se supone que es para centrar */
+    width: 1140px; /* tiene que ser igual que el width de ".row" */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* lo que hace es transformar el elemento a la mitad de su "top" y "left" */
+    /* border: 1px solid; */
+}
+
+.logo {
+    height: 100px;
+    width: auto;
+    float: left;
+    margin-top: 20px;
+}
+
+.logo-black {
+    display: none;
+    height: 50px;
+    width: auto;
+    float: left;
+    margin: 5px 0;
+}
+
+/* --------------------------*/
+/* ----- MAIN NAV ----- */
+/* --------------------------*/
+
+.main-nav {
+    float: right;
+    list-style: none; /* para quitar puntos del lado izquierdo que tiene la lista */
+    margin-top: 55px;
+}
+/* Para seleccionar todos los elementos "li" dentro del elemento "ul"  */
+.main-nav li {
+    display: inline-block;
+    margin-left: 40px;
+}
+
+/* Dentro de la clase ".main-nav", con todos los elementos "li" que contengan elementos "a" */
+.main-nav li a:link,
+.main-nav li a:visited {
+    padding: 8px 0;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 90%;
+    /* Basados en el font-size de html (línea 7) lo dividimos entre 18, que es el font-size que se busca y nos da 0.9
+    eso quiere decir que el font-size que buscamos es el 90%. Es buena practica trabajar con porcentajes. */
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.2s;
+}
+
+.main-nav li a:hover,
+.main-nav li a:active {
+    border-bottom: 2px solid #e67e22;
+}
+
+/* --------------------------*/
+/* ----- MOBILE NAV ----- */
+/* --------------------------*/
+
+.mobile-nav-icon {
+    float: right;
+    margin-top: 30px;
+    cursor: pointer; /* sirve para especificar el tipo de cursor cuando se ponga encima del elemento. En este caso se tiene que hacer así porque el elemento es un lingk y se le quitó la propiedad "href" */
+    display: none;
+}
+
+/* para darle formato al icono */
+
+.mobile-nav-icon i {
+    font-size: 200%;
+    color: white;
+}
+
+/* --------------------------*/
+/* ----- STICKY ----- */
+/* --------------------------*/
+
+.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 2px #efefef;
+    z-index: 9999; /* esto sirve para definir que el elemento esté siempre encima de los demás */
+    /* sin este parametro el nav se va atrás cuando llega a la sección de  */
+}
+
+.sticky .main-nav { margin-top: 18px; }
+
+.sticky .main-nav li a:link,
+.sticky .main-nav li a:visited {
+    padding: 16px 0;
+    color: #555;
+}
+
+.sticky .logo { display: none; }
+.sticky .logo-black { display: block; }
+
+/* --------------------------*/
+/* ----- HEADINGS ----- */
+/* --------------------------*/
+
+h1, h2, h3 {
+    font-weight: 300; /* Es la anchura del font. Se le pone 300 porque con el font-size: 240%; aumentó el font-weight*/
+    /* border: 1px solid; */
+    text-transform: uppercase; /* para ponerlo todo en mayúscula */
+}
+
+h1 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: white;
+    font-size: 240%; /* el 240% es con respecto al font-size global que se encuentra en html */
+    word-spacing: 4px; /* separación entre palabras */
+    letter-spacing: 1px; /* separación entre letras */
+}
+
+h2 {
+    font-size: 180%;
+    word-spacing: 2px;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 1px; /* separación entre letras */
+    /* border: 1px solid gray; */
+}
+
+h3 {
+    font-size: 110%;
+    margin-bottom: 15px;
+    letter-spacing: 1px;  /* separación entre letras */
+    /* border: 1px solid gray; */
+}
+
+h2:after {
+    display: block;
+    height: 2px;
+    background-color: #e67e22;
+    content: " ";
+    width: 100px;
+    margin: 0 auto; /* margin: 0 auto es para centrarel elemento */
+    margin-top: 30px;
+}
+
+.long-copy {
+    line-height: 145%; /* separación entre los renglones */
+    width: 70%; /* el ancho de los elementos con esta clase, cubren el 70% del total de la página */
+    margin-left: 15%; /* se le da el ese % porque el weidth es del 70% y con ese 15% de margen izquierdo, le queda otro 15% del lado derecho */
+    /* border: 1px solid gray; */
+}
+
+.box p {
+    font-size: 90%;
+    line-height: 145%;
+}
+
+/* --------------------------*/
+/* ----- ICONS ----- */
+/* --------------------------*/
+
+.icon-big {
+    /* Este tipo de icono se puede utilizar con las propiedades de un font */
+    font-size: 350%;
+    display: block; /* forza un line break */
+    color: #e67e22;
+    margin-bottom: 10px;
+}
+
+.icon-small {
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+    color: #e67e22;
+    font-size: 120%;
+    margin-right: 10px;
+    /* Secrets to align text and icons */
+    line-height: 120%;
+    vertical-align: middle;
+    margin-top: -5px;
+}
+
+/* --------------------------*/
+/* ----- LINKS ----- */
+/* --------------------------*/
+
+a:link,
+a:visited {
+    color: #e67e22;
+    text-decoration: none;
+    padding-bottom: 1px;
+    border-bottom: 1px solid #e67e22;
+    transition: border-bottom 0.2s; color: 0.2s
+}
+
+a:hover,
+a:active {
+    color: #555;
+    border-bottom: 1px solid transparent;
+
+}
+
+/* --------------------------*/
+/* ----- BUTTONS ----- */
+/* --------------------------*/
+
+.btn:link, /* "link" es una pseudo clase para definir la apariencia del elemento en su estado natural (normal) */
+.btn:visited, /* "visited" es una pseudo clase para definir la apariencia del elemento después de hacer click sobre él, en este caso se quiere dejar como en su estado natural, por eso se agrega esta configuración */
+input[type=submit] { 
+    display: inline-block;
+    padding: 10px 30px;
+    font-weight: 300;
+    text-decoration: none;
+    border-radius: 200px;
+    transition: background-color 0.2s, border 0.2s, color 0.2s; /* se le define tiempo al fondo, border y color de font para que no cambie tan rápido su aspecto */
+}
+
+.btn-full:link,
+.btn-full:visited,
+input[type=submit] {
+    background-color: #e67e22;
+    border: 1px solid #e67e22;
+    color: white;
+    margin-right: 15px;
+}
+
+.btn-ghost:link,
+.btn-ghost:visited {
+    border: 1px solid #e67e22;
+    color: #e67e22;
+}
+
+/* PARA QUE EL "HOVER" Y "ACTIVE" FUNCIONEN, TIENEN QUE ESTAR DESPUÉS DE LAS PSEUDO CLASES "LINK" Y "VISITED"
+   "hover" es una pseudo clase para definir la apariencia del elemento cuando se pasa el mouse por encima
+   "active" es una pseudo clase para definir la apariencia del elemento cuando se hace click sobre él */
+.btn:hover,
+.btn:active,
+input[type=submit]:hover,
+input[type=submit]:active {
+    background-color: #cf6d17;
+}
+
+.btn-full:hover,
+.btn-full:active,
+input[type=submit]:hover,
+input[type=submit]:active {
+    border: 1px solid #cf6d17;
+    color: white;
+}
+
+.btn-ghost:hover,
+.btn-ghost:active {
+    border: 1px solid #cf6d17;
+    color: white;
+}
+
+.section-features .long-copy {
+    margin-bottom: 30px;
+}
+
+/* --------------------------*/
+/* ----- MEALS IMAGES ----- */
+/* --------------------------*/
+
+.section-meals {
+    padding: 0;
+}
+
+.meals-showcase {
+    list-style: none; /* como las imagenes están dentro de elementos tipo "list" no queremos que aparezcan los bullet points y por eso se opne "none" */
+    width: 100%; /* porque se quiere que las imagenes cubran todo el ancho de al página */
+}
+
+.meals-showcase li {
+    display: block;
+    float: left; /* para poner las imagenes una al lado de otra */
+    width: 25%; /* queremos 4 imagenes en la fila y cada imagen debe tener el 25% del width total de la página */
+}
+
+.meal-photo {
+    width: 100%; /* es el 100% en referencia al width de la clase .meals-showcase li */
+    margin: 0;
+    overflow: hidden;
+    background-color: black; /* se pone así para que cuando opacity: 0.7 no se haga blanco */
+}
+
+.meal-photo img {
+    opacity: 0.7;  /* es decir que lo convierte a un 70% de su opacidad original */
+    width: 100%;
+    height: auto;
+    transform: scale(1.15); /* para aumentar del 100% al 150% el tamaño de la imagen */
+    transition: transform 0.5s, opacity 0.5s; /* tiempo que tarda en aumentar de tamaño */
+}
+
+.meal-photo img:hover {
+    opacity: 1; /* para regresar la opcidad al 100%, es decir, su opacidad original */
+    transform: scale(1.03); /* regresa al tamaño normal la imagen cuando se pasa el cursor por encima */
+}
+
+/* --------------------------*/
+/* ----- HOW IT WORKS ----- */
+/* --------------------------*/
+
+.section-steps {
+    background-color: whitesmoke;
+}
+
+/* :first-child es un selector para el primer elemento en orden descendente */
+.steps-box:first-child {
+    text-align: right; /* esta propiedad no solo sirve para texto, sino para todo lo que esté dentro del contenedor */
+    padding-right: 3%; /* se usa porcentaje para que sea responsive */
+    margin-top: 30px;
+    /* border: 1px solid gray; */
+}
+
+.steps-box:last-child {
+    padding-left: 3%;
+    margin-top: 70px;
+    /* border: 1px solid gray; */
+}
+
+.app-screen {
+    width: 40%;
+}
+
+.works-step {
+    margin-bottom: 50px; /* para separar el texto de los "steps" con las imagenes de app y play store */
+}
+
+.works-step:last-of-type {
+    margin-bottom: 80px;
+}
+
+.works-step div {
+    color: #cf6d17;
+    border: 2px solid #cf6d17;
+    display: inline-block;  /* el elemento no forza un line-break */
+    border-radius: 50%; /* para dar la forma de ciculo al borde del elemento */
+    height: 55px;
+    width: 55px;
+    text-align: center;
+    padding: 5px;
+    float: left;
+    font-size: 150%;
+    margin-right: 25px;
+}
+
+.btn-app img {
+    height: 50px;
+    width: auto;
+    margin-right: 10px;
+    margin-top: ;
+}
+
+.btn-app:link,
+.btn-app:visited {
+    border: 0;
+}
+
+/* --------------------------*/
+/* ----- CITIES ----- */
+/* --------------------------*/
+
+.box img {
+    width: 100%; /* para que la imagen abarque todo el ancho del div contenedor  */
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.city-feature {
+    margin-bottom: 5px;
+}
+
+/* --------------------------*/
+/* ----- TESTIMONIALS ----- */
+/* --------------------------*/
+
+.section-testimonials {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.800), rgba(0, 0, 0, 0.800)), url(img/back-customers.jpg);
+    background-size: cover;
+    background-position: center;
+    color: white;
+    background-attachment: fixed; /* para que la imagen de fondo no se mueva mientras hacemos scroll en la página */
+}
+
+blockquote {
+    padding: 2%;
+    font-style: italic;
+    line-height: 145%; /* separación entre líneas */
+    position: relative; /* para que pueda usarse "position: absolute" abajo */
+}
+
+blockquote:before {
+    content: "\201C"; /* para agregar texto */
+    font-size: 500%;
+    display: block;
+    position: absolute; /* para poder modificar top y left del elemento CUANDO SE HAGA UN ELEMENTO COMO "ABSOLUTE" DEBEMOS ASEGURARNOS QUE SU ELEMETO PADRE, TENGA ESTA PROPIEDAD COMO RELATIVA */
+    top: -5px;
+    left: -5px;
+}
+
+cite {
+    font-size: 90%;
+    margin-top: 25px;
+    display: block;
+    /* border: 1px solid gray; */
+}
+
+cite img {
+    height: 45px; /* ajustar la altura a 45px */
+    border-radius: 50%; /* darle forma circular */
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* --------------------------*/
+/* ----- SIGN UP ----- */
+/* --------------------------*/
+
+.section-plans {
+    background-color: whitesmoke;
+}
+
+.plan-box {
+    background-color: white;
+    border-radius: 5px;
+    width: 90%;
+    /* border: 1px solid black; */
+    box-shadow: 0 2px 2px #efefef; /* valores: "x", "y", blur y color */
+}
+
+.plan-box div {
+    padding: 15px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.plan-box div:first-child {
+    background-color: #fcfcfc;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.plan-box div:last-child { /* para elegir el último div (en orden descendente) de la clase contenedora "plan-box" */
+    text-align: center;
+    border: 0; /* como es el último div no se requiere el border-bottom que se le dio arriba */
+}
+
+.plan-price {
+    font-size: 300%;
+    margin-bottom: 10px;
+    font-weight: 100;
+    color: #e67e22;
+}
+
+.plan-price span {
+    font-size: 30%;
+    font-weight: 300;
+}
+
+.plan-price-meal {
+    font-size: 80%;
+}
+
+.plan-box ul {
+    list-style: none;
+}
+
+.plan-box ul li {
+    padding: 5px 0;
+}
+
+/* --------------------------*/
+/* ----- FORM ----- */
+/* --------------------------*/
+
+.contact-form {
+    width: 60%;  /* 60% con respecto al 100% de su elemento padre */
+    margin: 0 auto; /* para central el elemento con respecto a su elemento padre */
+}
+
+input[type=text], /* el formato solo aplica para los elementos input de tipo texto */
+input[type=email], /* el formato solo aplica para los elementos input de tipo email */
+select,
+textarea {
+    width: 100%; /* % con respecto a su elemento padre */
+    padding: 7px; 
+    border-radius: 3px; /* les convierte las esquinas a redondas */
+    border: 1px solid #ccc; /* para definir las características del contorno (o borde) del elemento */
+}
+
+textarea {
+    height: 100px;
+}
+
+input[type=checkbox] {
+    margin: 10px 5px 10px 0;
+}
+
+*:focus { /* *: quiere decir que aplica para todos los elementos */
+    outline: none; /* es para cuando selecciones algún elemento no "brille" */
+}
+
+/* --------------------------*/
+/* ----- FOOTER ----- */
+/* --------------------------*/
+
+footer {
+    background-color: #333;
+    padding: 50px;
+    font-size: 80%;
+}
+
+.footer-nav {
+    list-style: none;
+    float: left;
+}
+
+.social-links {
+    list-style: none;
+    float: right;
+}
+
+.footer-nav li,
+.social-links li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.footer-nav li:last-child,
+.social-links li:last-child {
+    margin-right: 0;
+    color: white;
+}
+
+.footer-nav li a:link,
+.footer-nav li a:visited,
+.social-links li a:link,
+.social-links li a:visited {
+    text-decoration: none;
+    border: 0;
+    color: #888;
+    transition: color 0.2s;
+}
+
+.footer-nav li a:hover,
+.footer-nav li a:active {
+        color: #ddd;
+}
+
+.social-links li a:link,
+.social-links li a:visited {
+    font-size: 160%;
+}
+
+.ion-social-facebook,
+.ion-social-twitter,
+.ion-social-googleplus,
+.ion-social-instagram {
+    transition: color 0.2s;
+}
+
+.ion-social-facebook:hover {
+    color: #3b5998;
+}
+
+.ion-social-twitter:hover {
+    color: #55acee;
+}
+
+.ion-social-googleplus:hover {
+    color: #dd4b39;
+}
+
+.ion-social-instagram:hover {
+    color: #e95950;
+}
+
+footer p{
+    color: #888;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* --------------------------*/
+/* ----- ANIMATIONS ----- */
+/* --------------------------*/
+
+.js--wp-1,
+.js--wp-2,
+.js--wp-3 {
+    opacity: 0; /* esto es para hacer invisible el elemento y que surta efecto la animación en el archivo "script.js" */
+    animation-duration: 1s;
+}
+
+.js--wp-4.animate {
+    animation-duration: 1s;
+}
+
+.js--wp-1.animate,
+.js--wp-2.animate,
+.js--wp-3.animate { /* se tienen que dejar las dos clases juntas */
+    opacity: 1; /* esto es para hacer visible el elemento y que surta efecto la animación en el archivo "script.js" */
+    
+}
